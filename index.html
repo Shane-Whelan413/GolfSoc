@@ -669,7 +669,7 @@
       <button onclick="submitEmail()">Get started</button>
     </div>
     <div class="cta-confirm" id="cta-confirm">✓ Thanks — we'll be in touch shortly!</div>
-    <p style="margin-top:24px;font-size:13px;color:var(--grey)">Or email directly: <a href="mailto:hello@golfsoc.ie" style="color:var(--navy);font-weight:500">hello@golfsoc.ie</a></p>
+    <p style="margin-top:24px;font-size:13px;color:var(--grey)">Or email directly: <a href="/cdn-cgi/l/email-protection#5139343d3d3e11363e3d37223e327f3834" style="color:var(--navy);font-weight:500"><span class="__cf_email__" data-cfemail="1179747d7d7e51767e7d77627e723f7874">[email&#160;protected]</span></a></p>
   </div>
 </section>
 
@@ -679,7 +679,7 @@
   <p>© 2026 GolfSoc. Built for Irish golf societies.</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
@@ -689,14 +689,20 @@ const observer = new IntersectionObserver(entries => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.05 });
 reveals.forEach(el => observer.observe(el));
+
+// Trigger reveal for anything already in view on load
+setTimeout(() => {
+  reveals.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      el.classList.add('visible');
+    }
+  });
+}, 100);
 
 // Email submit
 function submitEmail() {
   const input = document.getElementById('cta-input');
-  const val = input.value.trim();
-  if (!val || !val.includes('@')) { input.focus(); return; }
-  input.parentElement.style.display = 'none';
-  document.getElementById('cta-confirm').style.display = 'block';
-  // In production — hook this up to Mailchimp, Rese
+  const val = input.valu
