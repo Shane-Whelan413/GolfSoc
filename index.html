@@ -157,14 +157,24 @@
     margin-top: 60px;
     position: relative;
     animation: fadeUp 0.8s 0.4s ease both;
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: visible;
   }
   .phone-frame {
-    width: 260px;
+    width: 220px;
+    flex-shrink: 0;
     background: var(--navy);
     border-radius: 36px;
     padding: 12px;
     box-shadow: 0 40px 80px rgba(12,28,46,0.2), 0 0 0 1px rgba(255,255,255,0.08);
-    margin: 0 auto;
+  }
+  @media(max-width: 600px) {
+    .phone-frame:last-child { display: none; }
+    .hero-phone { justify-content: center; }
+    .phone-frame { width: 240px; transform: none !important; margin-bottom: 0 !important; }
   }
   .phone-screen {
     background: #f8f5ee;
@@ -501,7 +511,7 @@
   </div>
 
   <!-- Phone mockups -->
-  <div class="hero-phone" style="display:flex;gap:20px;align-items:flex-end">
+  <div class="hero-phone">
     <div class="phone-frame" style="transform:rotate(-4deg);margin-bottom:20px">
       <div class="phone-screen">
         <div class="phone-topbar">
@@ -568,17 +578,56 @@
           <span style="font-size:8px;font-weight:700;color:rgba(255,255,255,0.4);text-align:center">Pts</span>
         </div>
         <div style="background:white">
-          ${[['1','4','5','2','#2d6a4f'],['2','5','5','3','#C9A84C'],['3','4','4','2','#2d6a4f'],['4','4','5','2','#2d6a4f'],['5','4','—','','#e0d8c8']].map(([h,p,s,pt,col])=>`
           <div style="display:grid;grid-template-columns:28px 28px 1fr 36px;align-items:center;padding:6px 12px;border-bottom:0.5px solid #f0ece4">
-            <div style="font-size:10px;font-weight:700;color:#9a9080;text-align:center">${h}</div>
-            <div style="font-size:10px;color:#9a9080;text-align:center">${p}</div>
+            <div style="font-size:10px;font-weight:700;color:#9a9080;text-align:center">1</div>
+            <div style="font-size:10px;color:#9a9080;text-align:center">4</div>
             <div style="display:flex;align-items:center;justify-content:center;gap:4px">
               <div style="width:22px;height:22px;border-radius:50%;border:1px solid #e0d8c8;background:white;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9a9080">−</div>
-              <div style="font-size:16px;font-weight:700;color:#1a1510;min-width:20px;text-align:center">${s}</div>
+              <div style="font-size:16px;font-weight:700;color:#1a1510;min-width:20px;text-align:center">5</div>
               <div style="width:22px;height:22px;border-radius:50%;border:1px solid #e0d8c8;background:white;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9a9080">+</div>
             </div>
-            <div style="height:20px;border-radius:4px;background:${pt?col:'transparent'};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white">${pt}</div>
-          </div>`).join('')}
+            <div style="height:20px;border-radius:4px;background:#52b788;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white">2</div>
+          </div>
+          <div style="display:grid;grid-template-columns:28px 28px 1fr 36px;align-items:center;padding:6px 12px;border-bottom:0.5px solid #f0ece4">
+            <div style="font-size:10px;font-weight:700;color:#9a9080;text-align:center">2</div>
+            <div style="font-size:10px;color:#9a9080;text-align:center">5</div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:4px">
+              <div style="width:22px;height:22px;border-radius:50%;border:1px solid #e0d8c8;background:white;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9a9080">−</div>
+              <div style="font-size:16px;font-weight:700;color:#1a1510;min-width:20px;text-align:center">5</div>
+              <div style="width:22px;height:22px;border-radius:50%;border:1px solid #e0d8c8;background:white;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9a9080">+</div>
+            </div>
+            <div style="height:20px;border-radius:4px;background:#C9A84C;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white">3</div>
+          </div>
+          <div style="display:grid;grid-template-columns:28px 28px 1fr 36px;align-items:center;padding:6px 12px;border-bottom:0.5px solid #f0ece4">
+            <div style="font-size:10px;font-weight:700;color:#9a9080;text-align:center">3</div>
+            <div style="font-size:10px;color:#9a9080;text-align:center">4</div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:4px">
+              <div style="width:22px;height:22px;border-radius:50%;border:1px solid #e0d8c8;background:white;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9a9080">−</div>
+              <div style="font-size:16px;font-weight:700;color:#1a1510;min-width:20px;text-align:center">4</div>
+              <div style="width:22px;height:22px;border-radius:50%;border:1px solid #e0d8c8;background:white;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9a9080">+</div>
+            </div>
+            <div style="height:20px;border-radius:4px;background:#52b788;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white">2</div>
+          </div>
+          <div style="display:grid;grid-template-columns:28px 28px 1fr 36px;align-items:center;padding:6px 12px;border-bottom:0.5px solid #f0ece4">
+            <div style="font-size:10px;font-weight:700;color:#9a9080;text-align:center">4</div>
+            <div style="font-size:10px;color:#9a9080;text-align:center">4</div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:4px">
+              <div style="width:22px;height:22px;border-radius:50%;border:1px solid #e0d8c8;background:white;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9a9080">−</div>
+              <div style="font-size:16px;font-weight:700;color:#1a1510;min-width:20px;text-align:center">5</div>
+              <div style="width:22px;height:22px;border-radius:50%;border:1px solid #e0d8c8;background:white;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9a9080">+</div>
+            </div>
+            <div style="height:20px;border-radius:4px;background:#52b788;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white">2</div>
+          </div>
+          <div style="display:grid;grid-template-columns:28px 28px 1fr 36px;align-items:center;padding:6px 12px">
+            <div style="font-size:10px;font-weight:700;color:#9a9080;text-align:center">5</div>
+            <div style="font-size:10px;color:#9a9080;text-align:center">4</div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:4px">
+              <div style="width:22px;height:22px;border-radius:50%;border:1px solid #e0d8c8;background:white;display:flex;align-items:center;justify-content:center;font-size:12px;color:#e0d8c8">−</div>
+              <div style="font-size:16px;font-weight:700;color:#ccc;min-width:20px;text-align:center">—</div>
+              <div style="width:22px;height:22px;border-radius:50%;border:1px solid #e0d8c8;background:white;display:flex;align-items:center;justify-content:center;font-size:12px;color:#e0d8c8">+</div>
+            </div>
+            <div style="height:20px;border-radius:4px;background:transparent"></div>
+          </div>
         </div>
         <div class="phone-nav">
           <div class="phone-nav-item"><div class="phone-nav-dot"></div>Home</div>
@@ -743,7 +792,7 @@
       <button onclick="submitEmail()">Get started</button>
     </div>
     <div class="cta-confirm" id="cta-confirm">✓ Thanks — we'll be in touch within 24 hours to get you set up!</div>
-    <p style="margin-top:24px;font-size:13px;color:var(--grey)">Or email directly: <a href="mailto:hello@golfsoc.ie" style="color:var(--navy);font-weight:500">hello@golfsoc.ie</a></p>
+    <p style="margin-top:24px;font-size:13px;color:var(--grey)">Or email directly: <a href="/cdn-cgi/l/email-protection#1f777a7373705f787073796c707c31767a" style="color:var(--navy);font-weight:500"><span class="__cf_email__" data-cfemail="7c14191010133c1b13101a0f131f521519">[email&#160;protected]</span></a></p>
   </div>
 </section>
 
@@ -753,7 +802,7 @@
   <p>© 2026 GolfSoc. Built for Irish golf societies.</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
@@ -784,14 +833,4 @@ function submitEmail() {
   input.parentElement.style.display = 'none';
   document.getElementById('cta-confirm').style.display = 'block';
   // Open in new tab so page doesn't navigate away
-  window.open('mailto:hello@golfsoc.ie?subject=GolfSoc%20Enquiry&body=Hi%2C%20I%20would%20like%20to%20find%20out%20more%20about%20GolfSoc.%20My%20email%20is%3A%20' + encodeURIComponent(val), '_blank');
-}
-
-document.getElementById('cta-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') submitEmail();
-});
-</script>
-
-<script>
-if (window.location.hash) {
-  history.replaceState(null, '', 
+  window.open('mailto:hello@golfsoc.ie?subject=GolfSoc%20Enquiry&body=Hi%2C%20I%20would%20like%20to%20find%20out%20more%20about%20GolfSoc.%20My%20email%20is%3A%20' +
