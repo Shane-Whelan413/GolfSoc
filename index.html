@@ -560,7 +560,7 @@
   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script>emailjs.init('YOUR_PUBLIC_KEY');</script> <!-- ← replace after EmailJS setup -->
+<script>emailjs.init('cRaoUslia7pWV9Le8');</script>
 </head>
 <body>
 
@@ -927,8 +927,8 @@ async function submitForm() {
 
   try {
     await emailjs.send(
-      'YOUR_SERVICE_ID',    // ← replace after EmailJS setup
-      'YOUR_TEMPLATE_ID',   // ← replace after EmailJS setup
+      'service_5wfq65k',
+      'template_j8arq8k',
       { name, society, email, phone, message }
     );
     document.getElementById('cta-form-wrap').style.display = 'none';
