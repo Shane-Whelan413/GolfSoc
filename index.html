@@ -487,7 +487,64 @@
     .steps { gap: 32px; }
     .step-line { display: none; }
     nav { padding: 0 1rem; }
-    .hero { padding: 100px 1.5rem 60px; }
+
+    /* Tighter hero on mobile */
+    .hero { padding: 90px 1.2rem 40px; }
+    .hero h1 { font-size: 36px; }
+    .hero-sub { font-size: 15px; }
+    .hero-actions { flex-direction: column; gap: 10px; width: 100%; }
+    .hero-actions a { width: 100%; text-align: center; }
+
+    /* Sections tighter on mobile */
+    .problem { padding: 48px 1.5rem; }
+    .features { padding: 48px 1.5rem; }
+    .features-grid { grid-template-columns: 1fr; gap: 12px; }
+    .feature-card { padding: 20px; }
+    .how { padding: 48px 1.5rem; }
+    .steps { flex-direction: column; align-items: center; }
+    .step { max-width: 100%; }
+    .pricing { padding: 48px 1.5rem; }
+    .cta { padding: 48px 1.5rem 100px; }
+
+    /* Hide second phone on mobile */
+    .phone-frame:last-child { display: none; }
+    .phone-frame { width: 240px; transform: none !important; margin-bottom: 0 !important; }
+  }
+
+  /* Sticky CTA button — mobile only */
+  .sticky-cta {
+    display: none;
+  }
+  @media(max-width: 640px) {
+    .sticky-cta {
+      display: flex;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 12px 16px;
+      background: rgba(248,246,241,0.97);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--border);
+      gap: 10px;
+    }
+    .sticky-cta a {
+      flex: 1;
+      text-align: center;
+      padding: 13px 0;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .sticky-cta .s-primary {
+      background: var(--navy);
+      color: white;
+    }
+    .sticky-cta .s-secondary {
+      background: transparent;
+      border: 1.5px solid rgba(12,28,46,0.2);
+      color: var(--navy);
+    }
   }
 </style>
 </head>
@@ -802,7 +859,13 @@
   <p>© 2026 GolfSoc. Built for Irish golf societies.</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><!-- STICKY MOBILE CTA -->
+<div class="sticky-cta">
+  <a href="#contact" class="s-primary">Get started free</a>
+  <a href="https://shane-whelan413.github.io/ClubTracker/" target="_blank" class="s-secondary">Live demo</a>
+</div>
+
+<script>
 // Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
