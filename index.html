@@ -695,7 +695,7 @@
       <button onclick="submitEmail()">Get started</button>
     </div>
     <div class="cta-confirm" id="cta-confirm">✓ Thanks — we'll be in touch shortly!</div>
-    <p style="margin-top:24px;font-size:13px;color:var(--grey)">Or email directly: <a href="/cdn-cgi/l/email-protection#5139343d3d3e11363e3d37223e327f3834" style="color:var(--navy);font-weight:500"><span class="__cf_email__" data-cfemail="1179747d7d7e51767e7d77627e723f7874">[email&#160;protected]</span></a></p>
+    <p style="margin-top:24px;font-size:13px;color:var(--grey)">Or email directly: <a href="mailto:hello@golfsoc.ie" style="color:var(--navy);font-weight:500">hello@golfsoc.ie</a></p>
   </div>
 </section>
 
@@ -731,4 +731,23 @@ setTimeout(() => {
 // Email submit
 function submitEmail() {
   const input = document.getElementById('cta-input');
-  const val = input.valu
+  const val = input.value.trim();
+  if (!val || !val.includes('@')) { input.focus(); return; }
+  input.parentElement.style.display = 'none';
+  document.getElementById('cta-confirm').style.display = 'block';
+  window.location.href = 'mailto:hello@golfsoc.ie?subject=GolfSoc Enquiry&body=Hi, I would like to find out more about GolfSoc. My email is: ' + encodeURIComponent(val);
+}
+
+document.getElementById('cta-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') submitEmail();
+});
+</script>
+
+<script>
+if (window.location.hash) {
+  history.replaceState(null, '', window.location.pathname);
+}
+window.scrollTo(0, 0);
+</script>
+</body>
+</html>
