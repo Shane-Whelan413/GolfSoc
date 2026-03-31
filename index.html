@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="GolfSoc — the mobile app built for Irish golf societies. Stableford scoring, handicap tracking and season leaderboards. No spreadsheets needed.">
 <title>GolfSoc — Golf Society App for Ireland</title>
+<!-- SEO / Open Graph -->
+<meta property="og:title" content="GolfSoc — Golf Society App for Ireland">
+<meta property="og:description" content="Stableford scoring, handicap tracking and season leaderboards. No spreadsheets needed.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://golfsoc.ie">
+<meta property="og:image" content="https://golfsoc.ie/icon.jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GolfSoc — Golf Society App for Ireland">
+<meta name="twitter:description" content="Stableford scoring, handicap tracking and season leaderboards. No spreadsheets needed.">
+<meta name="twitter:image" content="https://golfsoc.ie/icon.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -554,7 +566,6 @@
   <div class="nav-logo"><span style="color:var(--navy)">Golf</span><span>Soc</span></div>
   <a href="#" onclick="scrollToContact(event)" class="nav-cta">Get started</a>
   <a href="https://shane-whelan413.github.io/ClubTracker/" target="_blank" class="nav-cta outline">Live demo</a>
-</div>
 </nav>
 
 <!-- HERO -->
@@ -843,13 +854,17 @@
 <section class="cta" id="contact">
   <div class="reveal">
     <h2>Ready to run a proper league?</h2>
-    <p>Leave your email and we'll be in touch within 24 hours.</p>
-    <div class="cta-email">
-      <input type="email" id="cta-input" placeholder="your@email.ie" />
-      <button onclick="submitEmail()">Get started</button>
+    <p>Leave your details and we'll be in touch within 24 hours.</p>
+    <div id="cta-form-wrap" style="max-width:420px;margin:0 auto">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <input type="text" id="cta-name" placeholder="Your name" style="height:48px;padding:0 16px;border-radius:8px;border:1.5px solid var(--border);background:white;color:var(--navy);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.15s" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">
+        <input type="email" id="cta-input" placeholder="your@email.ie" style="height:48px;padding:0 16px;border-radius:8px;border:1.5px solid var(--border);background:white;color:var(--navy);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.15s" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--border)'">
+        <button onclick="submitForm()" style="height:48px;padding:0 24px;background:var(--navy);color:white;border:none;border-radius:8px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;transition:background 0.15s" onmouseover="this.style.background='var(--navy-mid)'" onmouseout="this.style.background='var(--navy)'">Get started →</button>
+      </div>
+      <p style="margin-top:12px;font-size:12px;color:var(--grey)">No spam. Just a quick chat about getting your society set up.</p>
     </div>
-    <div class="cta-confirm" id="cta-confirm">✓ Thanks — we'll be in touch within 24 hours to get you set up!</div>
-    <p style="margin-top:24px;font-size:13px;color:var(--grey)">Or email directly: <a href="/cdn-cgi/l/email-protection#1f777a7373705f787073796c707c31767a" style="color:var(--navy);font-weight:500"><span class="__cf_email__" data-cfemail="7c14191010133c1b13101a0f131f521519">[email&#160;protected]</span></a></p>
+    <div id="cta-confirm" style="display:none;color:#2d6a4f;font-size:15px;font-weight:500;background:rgba(82,183,136,0.1);border:1px solid rgba(82,183,136,0.3);padding:16px 24px;border-radius:10px;max-width:420px;margin:0 auto">✓ Thanks — we'll be in touch within 24 hours to get you set up!</div>
+    <p style="margin-top:24px;font-size:13px;color:var(--grey)">Or email directly: <a href="mailto:hello@golfsoc.ie" style="color:var(--navy);font-weight:500">hello@golfsoc.ie</a></p>
   </div>
 </section>
 
@@ -859,7 +874,7 @@
   <p>© 2026 GolfSoc. Built for Irish golf societies.</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><!-- STICKY MOBILE CTA -->
+<!-- STICKY MOBILE CTA -->
 <div class="sticky-cta">
   <a href="#" onclick="scrollToContact(event)" class="s-primary">Get started free</a>
   <a href="https://shane-whelan413.github.io/ClubTracker/" target="_blank" class="s-secondary">Live demo</a>
@@ -888,15 +903,34 @@ setTimeout(() => {
   });
 }, 100);
 
-// Email submit
-function submitEmail() {
-  const input = document.getElementById('cta-input');
-  const val = input.value.trim();
-  if (!val || !val.includes('@')) { input.focus(); return; }
-  input.parentElement.style.display = 'none';
-  document.getElementById('cta-confirm').style.display = 'block';
-  // Open in new tab so page doesn't navigate away
-  window.open('mailto:hello@golfsoc.ie?subject=GolfSoc%20Enquiry&body=Hi%2C%20I%20would%20like%20to%20find%20out%20more%20about%20GolfSoc.%20My%20email%20is%3A%20' +    encodeURIComponent(val), '_blank');
+// Form submission via Formspree
+async function submitForm() {
+  const name = document.getElementById('cta-name').value.trim();
+  const email = document.getElementById('cta-input').value.trim();
+  if (!name) { document.getElementById('cta-name').focus(); return; }
+  if (!email || !email.includes('@')) { document.getElementById('cta-input').focus(); return; }
+
+  const btn = event.currentTarget;
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name, email })
+    });
+    if (res.ok) {
+      document.getElementById('cta-form-wrap').style.display = 'none';
+      document.getElementById('cta-confirm').style.display = 'block';
+    } else {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+    }
+  } catch(err) {
+    btn.textContent = 'Try again';
+    btn.disabled = false;
+  }
 }
 
 function scrollToContact(e) {
