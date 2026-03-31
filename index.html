@@ -711,8 +711,8 @@
     <div style="font-size:36px;color:#C9A84C;font-family:'Playfair Display',serif;line-height:1;margin-bottom:20px">"</div>
     <p style="font-family:'Playfair Display',serif;font-size:clamp(18px,3vw,24px);color:var(--navy);line-height:1.6;font-style:italic;margin-bottom:32px">The lads took to it straight away. Scores go in on the course, the leaderboard updates itself — no more Sunday evening admin for me.</p>
     <div style="display:flex;align-items:center;justify-content:center;gap:14px">
-      <div style="width:48px;height:48px;border-radius:10px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <span style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#C9A84C">BH</span>
+      <div style="width:48px;height:48px;border-radius:10px;overflow:hidden;flex-shrink:0;border:1px solid rgba(12,28,46,0.1)">
+        <img src="icon.jpeg" alt="Bray Head Golf Society" style="width:100%;height:100%;object-fit:cover">
       </div>
       <div style="text-align:left">
         <div style="font-size:14px;font-weight:600;color:var(--navy)">Bray Head Golf Society</div>
@@ -896,4 +896,16 @@ function submitEmail() {
   input.parentElement.style.display = 'none';
   document.getElementById('cta-confirm').style.display = 'block';
   // Open in new tab so page doesn't navigate away
-  window.open('mailto:hello@golfsoc.ie?subject=GolfSoc%20Enquiry&body=Hi%2C%20I%20would%20like%20to%20find%20out%20more%20about%20GolfSoc.%20My%20email%20is%3A%20' +
+  window.open('mailto:hello@golfsoc.ie?subject=GolfSoc%20Enquiry&body=Hi%2C%20I%20would%20like%20to%20find%20out%20more%20about%20GolfSoc.%20My%20email%20is%3A%20' +    encodeURIComponent(val), '_blank');
+}
+
+function scrollToContact(e) {
+  e.preventDefault();
+  const el = document.getElementById('contact');
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+</script>
+</body>
+</html>
