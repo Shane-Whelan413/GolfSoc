@@ -735,7 +735,8 @@ function submitEmail() {
   if (!val || !val.includes('@')) { input.focus(); return; }
   input.parentElement.style.display = 'none';
   document.getElementById('cta-confirm').style.display = 'block';
-  window.location.href = 'mailto:hello@golfsoc.ie?subject=GolfSoc Enquiry&body=Hi, I would like to find out more about GolfSoc. My email is: ' + encodeURIComponent(val);
+  // Open in new tab so page doesn't navigate away
+  window.open('mailto:hello@golfsoc.ie?subject=GolfSoc%20Enquiry&body=Hi%2C%20I%20would%20like%20to%20find%20out%20more%20about%20GolfSoc.%20My%20email%20is%3A%20' + encodeURIComponent(val), '_blank');
 }
 
 document.getElementById('cta-input').addEventListener('keydown', e => {
@@ -748,6 +749,8 @@ if (window.location.hash) {
   history.replaceState(null, '', window.location.pathname);
 }
 window.scrollTo(0, 0);
+document.addEventListener('DOMContentLoaded', () => window.scrollTo(0, 0));
+window.addEventListener('load', () => setTimeout(() => window.scrollTo(0, 0), 50));
 </script>
 </body>
 </html>
