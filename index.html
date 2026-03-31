@@ -11,8 +11,8 @@
   :root {
     --navy: #0c1c2e;
     --navy-mid: #162338;
-    --green: #2d6a4f;
-    --green-light: #52b788;
+    --green: #8a6a1a;
+    --green-light: #C9A84C;
     --cream: #f8f6f1;
     --white: #ffffff;
     --grey: #6b7280;
@@ -50,7 +50,7 @@
     white-space: nowrap;
     display: flex; align-items: center; gap: 8px;
   }
-  .nav-logo span { color: var(--green-light); }
+  .nav-logo span { color: #fef8e6; }
   .nav-logo img { display: none; }
   @media(min-width: 640px) { .nav-logo img { display: block; } }
   .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
@@ -85,15 +85,15 @@
     content: '';
     position: absolute; inset: 0;
     background: 
-      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(45,106,79,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.1) 0%, transparent 70%),
       radial-gradient(ellipse 40% 30% at 80% 80%, rgba(201,168,76,0.06) 0%, transparent 60%);
     pointer-events: none;
   }
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(45,106,79,0.08);
-    border: 1px solid rgba(45,106,79,0.2);
-    color: var(--green);
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: #C9A84C;
     padding: 6px 16px; border-radius: 99px;
     font-size: 13px; font-weight: 500;
     margin-bottom: 28px;
@@ -102,7 +102,7 @@
   .hero-eyebrow::before {
     content: '';
     width: 6px; height: 6px; border-radius: 50%;
-    background: var(--green-light);
+    background: #fef8e6;
   }
   .hero h1 {
     font-family: 'Playfair Display', serif;
@@ -117,7 +117,7 @@
   }
   .hero h1 em {
     font-style: normal;
-    color: var(--green);
+    color: #C9A84C;
   }
   .hero-sub {
     font-size: clamp(16px, 2vw, 20px);
@@ -202,7 +202,7 @@
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .phone-name { font-size: 11px; font-weight: 600; color: #1a1510; flex: 1; }
-  .phone-pts { font-size: 13px; font-weight: 700; color: var(--green); }
+  .phone-pts { font-size: 13px; font-weight: 700; color: #C9A84C; }
   .phone-nav {
     background: var(--navy); padding: 6px 0;
     display: flex; justify-content: space-around;
@@ -227,7 +227,7 @@
     max-width: 640px;
     margin: 0 auto 20px;
   }
-  .problem h2 em { font-style: normal; color: var(--green-light); }
+  .problem h2 em { font-style: normal; color: #fef8e6; }
   .problem p {
     color: rgba(255,255,255,0.55);
     font-size: 17px;
@@ -244,7 +244,7 @@
     margin: 0 auto;
   }
   .section-label {
-    font-size: 12px; font-weight: 500; color: var(--green);
+    font-size: 12px; font-weight: 500; color: #C9A84C;
     text-transform: uppercase; letter-spacing: 0.1em;
     margin-bottom: 16px;
   }
@@ -276,11 +276,11 @@
   .feature-card:hover { background: #fafaf8; }
   .feature-icon {
     width: 44px; height: 44px; border-radius: 10px;
-    background: rgba(45,106,79,0.08);
+    background: rgba(201,168,76,0.1);
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 20px;
   }
-  .feature-icon svg { width: 22px; height: 22px; stroke: var(--green); }
+  .feature-icon svg { width: 22px; height: 22px; stroke: #C9A84C; }
   .feature-card h3 {
     font-size: 17px; font-weight: 600;
     color: var(--navy); margin-bottom: 8px;
@@ -300,7 +300,7 @@
     max-width: 900px;
     margin: 0 auto;
   }
-  .how .section-label { color: var(--green-light); }
+  .how .section-label { color: #fef8e6; }
   .how .section-title { color: white; max-width: 420px; }
   .steps {
     display: grid;
@@ -344,13 +344,13 @@
     content: '';
     position: absolute; top: 0; left: 0; right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--green), var(--green-light));
+    background: linear-gradient(90deg, #C9A84C, #fef8e6);
   }
   .pricing-badge {
     display: inline-block;
-    background: rgba(45,106,79,0.08);
-    color: var(--green);
-    border: 1px solid rgba(45,106,79,0.2);
+    background: rgba(201,168,76,0.1);
+    color: #C9A84C;
+    border: 1px solid rgba(201,168,76,0.3);
     padding: 5px 14px; border-radius: 99px;
     font-size: 12px; font-weight: 500;
     margin-bottom: 24px;
@@ -365,10 +365,10 @@
   .pricing-amount sup { font-size: 28px; vertical-align: top; margin-top: 10px; }
   .pricing-period { color: var(--grey); font-size: 16px; margin-bottom: 8px; }
   .pricing-alt {
-    color: var(--green); font-size: 14px; font-weight: 500;
+    color: #C9A84C; font-size: 14px; font-weight: 500;
     margin-bottom: 36px;
     padding: 10px 16px; border-radius: 8px;
-    background: rgba(45,106,79,0.06);
+    background: rgba(201,168,76,0.08);
     display: inline-block;
   }
   .pricing-features {
@@ -387,7 +387,7 @@
   .pricing-features li::before {
     content: '';
     width: 18px; height: 18px; border-radius: 50%;
-    background: rgba(45,106,79,0.1);
+    background: rgba(201,168,76,0.12);
     flex-shrink: 0;
     background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%232d6a4f' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -444,7 +444,7 @@
     cursor: pointer; transition: background 0.15s;
   }
   .cta-email button:hover { background: var(--navy-mid); }
-  .cta-confirm { display: none; color: var(--green); font-size: 14px; font-weight: 500; margin-top: 12px; }
+  .cta-confirm { display: none; color: #C9A84C; font-size: 14px; font-weight: 500; margin-top: 12px; }
 
   /* FOOTER */
   footer {
@@ -458,7 +458,7 @@
     font-size: 18px; font-weight: 700;
     color: white;
   }
-  .footer-logo span { color: var(--green-light); }
+  .footer-logo span { color: #fef8e6; }
   footer p { color: rgba(255,255,255,0.35); font-size: 13px; }
 
   /* ANIMATIONS */
@@ -650,9 +650,9 @@
 </section>
 
 <!-- DEMO CALLOUT -->
-<section style="background:#f0f7f3;padding:60px 2rem;text-align:center;border-top:1px solid rgba(45,106,79,0.15);border-bottom:1px solid rgba(45,106,79,0.15)">
+<section style="background:#fef8e6;padding:60px 2rem;text-align:center;border-top:1px solid rgba(201,168,76,0.2);border-bottom:1px solid rgba(201,168,76,0.2)">
   <div style="max-width:600px;margin:0 auto">
-    <div style="font-size:12px;font-weight:500;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px">See it in action</div>
+    <div style="font-size:12px;font-weight:500;color:#C9A84C;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px">See it in action</div>
     <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,38px);font-weight:700;color:var(--navy);margin-bottom:12px;letter-spacing:-0.02em">Try the live demo</h2>
     <p style="color:var(--grey);font-size:16px;font-weight:300;line-height:1.6;margin-bottom:28px">Log in as any player with PIN <strong style="color:var(--navy)">1234</strong> and explore the full app — leaderboard, scoring, profiles and more.</p>
     <a href="https://shane-whelan413.github.io/ClubTracker/" target="_blank" class="btn-primary" style="font-size:15px;padding:14px 36px">Open live demo →</a>
