@@ -590,22 +590,28 @@ footer{
         </ul>
         <a href="#contact" class="pricing-cta ghost">Get in touch</a>
       </div>
-      <div class="pricing-card featured">
-        <div class="pricing-badge">⚡ Founding rate</div>
+      <div class="pricing-card featured" id="founding-card">
+        <div class="pricing-badge" id="founding-badge">⚡ Founding rate</div>
         <div class="pricing-name">Founding member</div>
-        <div class="pricing-price">€50<span>/year</span></div>
-        <p class="pricing-note">Locked in forever — your rate never goes up</p>
-        <ul class="pricing-features">
+        <div class="pricing-price" id="founding-price">€50<span>/year</span></div>
+        <p class="pricing-note" id="founding-note">Locked in forever — your rate never goes up</p>
+        <div id="founding-spots" style="display:flex;align-items:center;gap:8px;margin-bottom:20px;padding:10px 14px;background:rgba(26,51,32,0.06);border-radius:8px">
+          <div id="spots-bar-wrap" style="flex:1;height:6px;background:var(--border);border-radius:99px;overflow:hidden">
+            <div id="spots-bar" style="height:100%;background:var(--green);border-radius:99px;transition:width 0.4s;width:0%"></div>
+          </div>
+          <span id="spots-text" style="font-size:12px;font-weight:700;color:var(--green);white-space:nowrap;flex-shrink:0">Loading...</span>
+        </div>
+        <ul class="pricing-features" id="founding-features">
           <li>Everything in Standard</li>
           <li>Rate locked permanently</li>
           <li>Direct access to founder</li>
           <li>Shape the product roadmap</li>
           <li>Priority support</li>
         </ul>
-        <a href="#contact" class="pricing-cta primary">Claim founding rate →</a>
+        <a href="#contact" class="pricing-cta primary" id="founding-cta">Claim founding rate →</a>
       </div>
     </div>
-    <p class="pricing-urgency" style="margin-top:20px">Founding rate available to early societies only. <strong>First month free, no card required.</strong></p>
+    <p class="pricing-urgency" style="margin-top:20px" id="pricing-urgency">Founding rate available to first 10 societies only. <strong>First month free, no card required.</strong></p>
   </div>
 </div>
 
@@ -667,6 +673,13 @@ footer{
             <option>Other</option>
           </select>
         </div>
+        <div class="form-field" id="rate-field">
+          <label>Which rate are you interested in?</label>
+          <select id="cf-rate">
+            <option value="founding">Founding rate — €50/year (locked forever)</option>
+            <option value="standard">Standard — €200/year</option>
+          </select>
+        </div>
       </div>
       <button class="form-submit" onclick="submitForm()">Send — get started free →</button>
     </div>
@@ -694,6 +707,94 @@ footer{
 </footer>
 
 <script>
+const SB_URL = 'https://nljcncrvqjtuwycemutz.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5samNuY3J2cWp0dXd5Y2VtdXR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ4OTQyNTksImV4cCI6MjA5MDQ3MDI1OX0.uum4x_Ajhc4Y9P1hzMQph9JvxlMpvWlXfFqOxNFKaiQ';
+const FOUNDING_MAX = 10;
+
+async function loadFoundingCount() {
+  try {
+    var res = await fetch(SB_URL + '/rest/v1/config?key=eq.founding_count&select=value', {
+      headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY }
+    });
+    var data = await res.json();
+    var count = data[0] ? parseInt(data[0].value) : 0;
+    updateFoundingUI(count);
+  } catch(e) {
+    updateFoundingUI(0);
+  }
+}
+
+function updateFoundingUI(count) {
+  var remaining = Math.max(0, FOUNDING_MAX - count);
+  var pct = Math.min(100, (count / FOUNDING_MAX) * 100);
+  var bar = document.getElementById('spots-bar');
+  var text = document.getElementById('spots-text');
+  var card = document.getElementById('founding-card');
+  var badge = document.getElementById('founding-badge');
+  var price = document.getElementById('founding-price');
+  var note = document.getElementById('founding-note');
+  var cta = document.getElementById('founding-cta');
+  var urgency = document.getElementById('pricing-urgency');
+  var rateField = document.getElementById('rate-field');
+  var rateSelect = document.getElementById('cf-rate');
+
+  if (bar) bar.style.width = pct + '%';
+
+  if (remaining <= 0) {
+    // FULL — swap to standard rate
+    if (bar) bar.style.background = '#cc4444';
+    if (text) text.innerHTML = '<span style="color:#cc4444">Founding rate full</span>';
+    if (badge) badge.textContent = 'Standard rate';
+    if (badge) badge.style.background = 'var(--text-3)';
+    if (price) price.innerHTML = '€200<span>/year</span>';
+    if (note) note.textContent = 'Full access, cancel anytime';
+    if (cta) cta.textContent = 'Get started →';
+    if (urgency) urgency.innerHTML = 'The founding rate is now closed. <strong>Standard rate applies — first month free.</strong>';
+    // Remove founding option from form
+    if (rateSelect) {
+      Array.from(rateSelect.options).forEach(function(o) {
+        if (o.value === 'founding') o.remove();
+      });
+    }
+  } else {
+    // SPOTS REMAINING
+    var barColor = remaining <= 3 ? '#e07b00' : 'var(--green)';
+    if (bar) bar.style.background = barColor;
+    var label = remaining === 1 ? '1 spot left!' : remaining + ' of ' + FOUNDING_MAX + ' spots left';
+    if (text) { text.textContent = label; text.style.color = barColor; }
+    if (urgency) urgency.innerHTML = 'Only <strong>' + remaining + ' founding spots remaining</strong> — rate locked forever once claimed.';
+  }
+}
+
+async function incrementFoundingCount() {
+  try {
+    // Read current value
+    var res = await fetch(SB_URL + '/rest/v1/config?key=eq.founding_count&select=value', {
+      headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY }
+    });
+    var data = await res.json();
+    var current = data[0] ? parseInt(data[0].value) : 0;
+    var next = current + 1;
+    // Update
+    await fetch(SB_URL + '/rest/v1/config?key=eq.founding_count', {
+      method: 'PATCH',
+      headers: {
+        'apikey': SB_KEY,
+        'Authorization': 'Bearer ' + SB_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ value: String(next) })
+    });
+    updateFoundingUI(next);
+  } catch(e) {
+    console.log('Counter update failed', e);
+  }
+}
+
+// Load count on page load
+document.addEventListener('DOMContentLoaded', loadFoundingCount);
+
 function toggleMenu() {
   document.getElementById('drawer').classList.toggle('open');
 }
@@ -720,18 +821,23 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   });
 });
 // Contact form
-function submitForm() {
+async function submitForm() {
   var name = document.getElementById('cf-name').value.trim();
   var email = document.getElementById('cf-email').value.trim();
   var society = document.getElementById('cf-society').value.trim();
+  var rate = document.getElementById('cf-rate') ? document.getElementById('cf-rate').value : 'standard';
   if (!name || !email || !society) {
     alert('Please fill in your name, email and society name.');
     return;
   }
+  // Increment founding counter if founding rate selected
+  if (rate === 'founding') {
+    await incrementFoundingCount();
+  }
   document.getElementById('contact-form-wrap').style.display = 'none';
   document.getElementById('form-success').style.display = 'block';
-  // Send to mailto as fallback
-  window.location.href = 'mailto:hello@golfsoc.ie?subject=GolfSoc trial request - ' + encodeURIComponent(society) + '&body=Name: ' + encodeURIComponent(name) + '%0AEmail: ' + encodeURIComponent(email) + '%0ASociety: ' + encodeURIComponent(society);
+  var rateLabel = rate === 'founding' ? 'Founding rate (€50/yr)' : 'Standard (€200/yr)';
+  window.location.href = 'mailto:hello@golfsoc.ie?subject=GolfSoc trial - ' + encodeURIComponent(society) + '&body=Name: ' + encodeURIComponent(name) + '%0AEmail: ' + encodeURIComponent(email) + '%0ASociety: ' + encodeURIComponent(society) + '%0ARate: ' + encodeURIComponent(rateLabel);
 }
 // Nav shadow on scroll
 window.addEventListener('scroll', function() {
