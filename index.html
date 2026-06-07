@@ -224,6 +224,30 @@ nav{
 .pricing-footnote{margin-top:20px;font-size:13px;color:var(--text-3);font-weight:300;max-width:520px}
 .pricing-footnote strong{color:var(--text-2);font-weight:700}
 
+/* ── CONTACT PAGE ── */
+.contact-page{min-height:100%;background:var(--white);padding:64px 5vw}
+.contact-inner{max-width:560px}
+.contact-intro{font-size:17px;color:var(--text-2);line-height:1.8;font-weight:300;margin-bottom:48px}
+.contact-intro strong{color:var(--text);font-weight:700}
+.contact-options{display:flex;flex-direction:column;gap:16px;margin-bottom:40px}
+.contact-card{
+  display:flex;align-items:center;gap:20px;
+  background:var(--cream);border:1.5px solid var(--border);
+  border-radius:12px;padding:24px 28px;
+  text-decoration:none;transition:border-color 0.15s,transform 0.15s;
+}
+.contact-card:hover{border-color:var(--green);transform:translateY(-1px)}
+.contact-card-icon{
+  width:44px;height:44px;border-radius:10px;
+  background:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.contact-card-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.contact-card-body{}
+.contact-card-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:3px}
+.contact-card-sub{font-size:13px;color:var(--text-3);font-weight:300}
+.contact-note{font-size:13px;color:var(--text-3);font-style:italic;line-height:1.7;border-top:1px solid var(--border);padding-top:24px}
+.contact-note strong{font-style:normal;color:var(--text-2);font-weight:700}
+
 /* ── FOOTER STRIP ── */
 .footer-strip{
   position:fixed;bottom:0;left:0;right:0;
@@ -256,6 +280,7 @@ nav{
     <button class="nav-link" onclick="showPage('how')" id="nav-how">How it works</button>
     <button class="nav-link" onclick="showPage('app')" id="nav-app">The app</button>
     <button class="nav-link" onclick="showPage('pricing')" id="nav-pricing">Pricing</button>
+    <button class="nav-link" onclick="showPage('contact')" id="nav-contact">Contact</button>
     <a href="https://app.golfsoc.ie" class="nav-cta">Try it free</a>
   </div>
   <button class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
@@ -268,6 +293,7 @@ nav{
   <button class="drawer-link" onclick="showPage('how');closeMenu()">How it works</button>
   <button class="drawer-link" onclick="showPage('app');closeMenu()">The app</button>
   <button class="drawer-link" onclick="showPage('pricing');closeMenu()">Pricing</button>
+  <button class="drawer-link" onclick="showPage('contact');closeMenu()">Contact</button>
   <button class="drawer-cta" onclick="window.location.href='https://app.golfsoc.ie'">Try it free →</button>
 </div>
 
@@ -413,6 +439,41 @@ nav{
         </div>
       </div>
       <p class="pricing-footnote">30-day free trial on all plans. <strong>No card required to start.</strong> Founding rate available to first 10 societies only — after that it's gone.</p>
+    </div>
+  </div>
+
+
+  <!-- CONTACT -->
+  <div class="page" id="page-contact">
+    <div class="contact-page">
+      <div class="page-header">
+        <div class="page-eyebrow">Contact</div>
+        <div class="page-title">We want to<br>hear from you</div>
+      </div>
+      <div class="contact-inner">
+        <p class="contact-intro">We're a small team and we actually read every message. Whether you have a question, something isn't working, or you just want to tell us what you think — <strong>get in touch</strong>. We'd love to hear from you.</p>
+        <div class="contact-options">
+          <a href="mailto:hello@golfsoc.ie" class="contact-card">
+            <div class="contact-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-card-body">
+              <div class="contact-card-title">Email us</div>
+              <div class="contact-card-sub">hello@golfsoc.ie — we'll get back to you</div>
+            </div>
+          </a>
+          <a href="mailto:hello@golfsoc.ie?subject=GolfSoc%20Feedback" class="contact-card">
+            <div class="contact-card-icon">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="contact-card-body">
+              <div class="contact-card-title">Give us feedback</div>
+              <div class="contact-card-sub">Tell us what's working, what isn't, what you'd love to see</div>
+            </div>
+          </a>
+        </div>
+        <p class="contact-note">We're building GolfSoc in the open and your feedback genuinely shapes what we build next. <strong>No message goes unread.</strong> If you're an Irish golf society trying it out, we especially want to hear from you.</p>
+      </div>
     </div>
   </div>
 
